@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    command: bash -c "yarn && yarn serve"
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/noah
+      - node_modules:/noah/node_modules
+    environment:
+      NODE_PATH: /noah/node_modules
+
+networks:
+  internal:
+
+volumes:
+  node_modules:
